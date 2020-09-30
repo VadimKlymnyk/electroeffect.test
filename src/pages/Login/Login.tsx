@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { login } from '../../api/request.js';
-import {forwardTo} from "../../utils/utils.js";
+import { login } from '../../api/request';
+import {forwardTo} from "../../utils/utils";
+import { loginParams} from '../../utils/interfaces'
+
 
 export const Login: React.FC = () => {
     const [form] = Form.useForm();
@@ -10,7 +12,7 @@ export const Login: React.FC = () => {
         forwardTo('/sign_up')
     }
 
-    const onFinish = async (value: React.FormEvent<HTMLFormElement>) => {
+    const onFinish = async (value: loginParams) => {
         try {
             const response = await login(value)
             if(response) forwardTo('/todo_list')

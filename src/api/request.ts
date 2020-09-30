@@ -1,9 +1,11 @@
-import {axiosApiInstance} from './api.js'
+import {axiosApiInstance} from './api'
 import { message } from 'antd';
+import {requestTodo, signUpParams, loginParams} from '../utils/interfaces'
 
 
 
-export async function signUp(data) {
+
+export async function signUp(data: signUpParams) {
     try {
         const response = await axiosApiInstance.post("/api/v1/users/", data);
         if(response.status === 201){
@@ -16,7 +18,7 @@ export async function signUp(data) {
     return false
 }
 
-export async function login(data) {
+export async function login(data: loginParams) {
     try {
         const response = await axiosApiInstance.post(`/api-token-auth/`, data);
         if(response.status === 200){
@@ -39,37 +41,34 @@ export async function getTodo() {
     } catch (e) {
         message.error(e.message)
     }
-    return false
     
 }
 
-export async function addTodo(data) {
+export async function addTodo(data: requestTodo) {
     try {
         const response = await axiosApiInstance.post(`/api/v1/todo/`, data);
         if(response.status === 201){
             message.success(response.statusText);
-            return true
+            return response
         }
     } catch (e) {
         message.error(e.message)
     }
-    return false
 }
 
-export async function updateTodo(payload) {
+export async function updateTodo(payload:{id: string, data: requestTodo}) {
     try {
         const response = await axiosApiInstance.put(`/api/v1/todo/${payload.id}/`, payload.data);
         if(response.status === 200){
             message.success(response.statusText);
-            return true
+            return response
         }
     } catch (e) {
         message.error(e.message)
     }
-    return false  
 }
 
-export async function searchTodo(text) {
+export async function searchTodo(text: string) {
     try {
         const response = await axiosApiInstance.get(`/api/v1/todo/?search=${text}`);
         if(response.status === 200){
@@ -79,7 +78,6 @@ export async function searchTodo(text) {
     } catch (e) {
         message.error(e.message)
     }
-    return false  
 }
 
 

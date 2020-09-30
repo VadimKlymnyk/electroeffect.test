@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter ,Router, Switch, Route, Redirect } from "react-router-dom";
-import history from "./utils/history.js";
+import {history} from "./utils/history";
 import {Login} from "./pages/Login/Login";
 import {SignUp} from "./pages/SignUp/SignUp";
 import {ToDoPage} from "./pages/ToDoPage/ToDoPage";

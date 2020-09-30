@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'antd';
-import { getTodo, updateTodo, addTodo, searchTodo } from '../../api/request.js';
+import { getTodo, updateTodo, addTodo, searchTodo } from '../../api/request';
 import {TodoList} from '../../components/ToDoList'
 import {ModalToDo} from '../../components/ModalToDo'
-import {forwardTo} from "../../utils/utils.js";
-import {ITodo} from "../../utils/interfaces";
+import {forwardTo} from "../../utils/utils";
+import {ITodo, formParams} from "../../utils/interfaces";
 
 
 const emptyTodo:ITodo = {
@@ -70,7 +70,7 @@ export const ToDoPage: React.FC = () => {
         setVisible(true)
     }
     
-    const onFinish = async (value: React.FormEvent<HTMLFormElement>) => {
+    const onFinish = async (value: formParams) => {
         if(selectedToDo.id){
             const response = await updateTodo({
                 id: selectedToDo.id,
